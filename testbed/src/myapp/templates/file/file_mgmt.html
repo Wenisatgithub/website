@@ -1,0 +1,18 @@
+{% extends "base.html"%}
+{%- block styles %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static',_external=True, filename='file/file_mgmt.css') }}">
+{%- endblock styles %}
+
+{% block content %}
+    <table class="fileMgmt">
+        {% for file in file_lists %}
+            <tr>
+                <td class="col_filename">{{ file['filename'] }}</td>
+                <td class="col"><form action="/download{{ file["filefullname"]}}" method="get"><input type="submit" value="下载" /></form></td>
+                <td class="col"><form action="/delete{{ file['filefullname']}}" method="get"><input type="submit" value="删除" /></form></td>
+                <td class="col_rename"><form action="/rename{{ file['filefullname']}}" method="post"><input type="text" value="xxx" name="newname"><input type="submit" value="重命名" /></form></td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

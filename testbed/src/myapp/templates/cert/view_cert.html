@@ -1,0 +1,16 @@
+{% extends "base.html"%}
+
+{%- block styles %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static',_external=True, filename='cert/view_cert.css') }}">
+{%- endblock styles %}
+
+{% block content %}
+    <table class="viewCert">
+        <form action="/view_cert" method="post">
+            <tr><td><textarea name="cert_content" id="cert_content" cols="66" rows="16"></textarea></td></tr>
+            <tr><td><input type="submit" value="查看证书信息"></td></tr>
+            <tr><td>{{ cert_info }}</td></tr>
+        </form>
+    </table>
+{% endblock %}

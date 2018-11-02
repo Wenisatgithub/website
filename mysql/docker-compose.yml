@@ -1,0 +1,23 @@
+version: "2.0"
+volumes:
+  dblog:
+  dbdata:
+services:
+  db:
+    container_name: db-dev
+    build:
+      context: ./mysql
+      dockerfile: dockerfile.ini
+    image: db-dev
+    volumes:
+      - dblog:/var/log
+      - dbdata:/var/lib/mysql
+    privileged: true
+    ports:
+      - 3306:3306
+    environment:
+      - mysqld
+      - MYSQL_ROOT_PASSWORD=cisco123!
+      - MYSQL_USER=flask
+      - MYSQL_PASSWORD=flask
+      - MYSQL_DATABASE=flaskDB

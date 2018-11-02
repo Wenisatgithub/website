@@ -1,0 +1,48 @@
+{% extends "base.html"%}
+
+{%- block styles %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static',_external=True, filename='cert/create_cert.css') }}">
+{%- endblock styles %}
+
+{% block content %}
+    <table class="createCert">
+        <form action="/create_cert" method="post">
+            <tr><td>通用名</td><td><input type="text" name="cn"></td></tr>
+            <tr><td>国家</td><td><input type="text" name="country"></td></tr>
+            <tr><td>省份</td><td><input type="text" name="province"></td></tr>
+            <tr><td>城市</td><td><input type="text" name="locality"></td></tr>
+            <tr><td>组织</td><td><input type="text" name="organization"></td></tr>
+            <tr><td>部门</td><td><input type="text" name="unit"></td></tr>
+            <tr><td>邮件</td><td><input type="text" name="email"></td></tr>
+            <tr><td>有效期</td><td><input type="text" name="days"></td></tr>
+            <tr><td>SAN-ip</td><td><input type="text" name="ip"></td></tr>
+            <tr><td>SAN-dns</td><td><input type="text" name="dns"></td></tr>
+            <tr>
+                <td>私钥长度</td>
+                <td>
+                    <select name="keylength">
+                       <option value="512">512</option>
+                       <option value="1024">1024</option>
+                       <option value="2048">2048</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>选择CA</td>
+                <td>
+                    <select name="ca">
+                       <option value="self">自签发</option>
+                       <option value="ca-root">ca-root.crdc.cisco.com</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="制作证书"></td>
+                {% if result == "ok" %}
+                    <td><a href="{{ create_cert_result }}">下载证书</a></td>
+                {% endif %}
+            </tr>
+        </form>
+    </table>
+{% endblock %}

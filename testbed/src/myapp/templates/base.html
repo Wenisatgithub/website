@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {%- block styles %}
+      <title>我的地盘我做主</title>
+    {%- endblock styles %}
+
+    {%- block styles %}
+      <link rel="stylesheet" href="static/bootstrap.min.css">
+      <link rel="stylesheet" href="{{ url_for('static',_external=True, filename='base.css') }}">
+    {%- endblock styles %}
+
+  </head>
+
+  <body>
+    <div class='navbar navbar-inverse'>
+      <div class='nav-collapse'>
+        <ul class="nav">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#">Page One</a></li>
+          <li><a href="#">Page Two</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div id='content' class='row-fluid'>
+      <div class='span9 main'>
+        <h2>Main Content Section</h2>
+      </div>
+      <div class='span3 sidebar'>
+        <h2>Sidebar</h2>
+      </div>
+    </div>
+  </body>
+</html>

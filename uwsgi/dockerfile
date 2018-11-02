@@ -1,0 +1,8 @@
+FROM docker.io/centos:7
+RUN ["/bin/bash", "-c", " \
+yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm \
+   MySQL-python.x86_64 gcc python-devel pcre-devel openssl-devel \
+&& yum -y install python-pip \
+&& yum clean all \
+&& pip install flask flask-wtf flask-bootstrap flask-script flask_uploads uwsgi \
+&& yum -y remove gcc python-devel pcre-devel openssl-devel"]

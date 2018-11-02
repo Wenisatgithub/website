@@ -1,0 +1,39 @@
+{% extends "base.html"%}
+
+{%- block styles %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static',_external=True, filename='cert/sign_cert.css') }}">
+{%- endblock styles %}
+
+{% block content %}
+    <table class="signCert">
+        <form action="/sign_cert" method="post">
+            <tr><td>上传CSR文件</td><td><input type="file" name="uploadCSRName" /></td></tr>
+            <tr>
+                <td>有效期</td>
+                <td>
+                    <select name="duration">
+                        <option value="30">30天</option>
+                        <option value="365">365天</option>
+                        <option value="3650">3650天</option>
+                    </select>
+                </td>
+            <tr>
+                <td>签名算法</td>
+                <td>
+                    <select name="signAlgorithm">
+                        <option value="md5">md5</option>
+                        <option value="sha1">sha1</option>
+                        <option value="sha2">sha2</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="sign" /></td>
+                {% if result == "ok" %}
+                    <td><a href="{{ sign_cert_result }}">下载证书</a></td>
+                {% endif %}
+            </tr>
+        </form>
+    </table>
+{% endblock %}
